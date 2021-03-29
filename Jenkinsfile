@@ -3,23 +3,14 @@ pipeline {
 	agent any
 	
 	stages{
-	
-		stage("build"){
-		
+		stage("Build"){
 			steps{
 				withMaven(maven: 'maven_3_5_0'){
-					sh 'mvn clean package'
+					sh 'mvn clean compile'
 				}
-			
 			}
 		}	
-		stage("test"){
-		
-			steps{
-				echo 'testing the application...'
-			}
-		}	
-		stage("deploy"){
+		stage("Deploy"){
 		
 			steps{
 				withCredentials([[$class: 'UsernamePasswordMultiBinding',
